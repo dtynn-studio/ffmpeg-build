@@ -7,3 +7,7 @@
 	path = x264
 	url = https://code.videolan.org/videolan/x264.git
     ignore = dirty
+[submodule "x265"]
+	path = x265
+	url = https://bitbucket.org/multicoreware/x265_git.git
+    ignore = dirty
