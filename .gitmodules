@@ -3,3 +3,7 @@
 	url = https://github.com/FFmpeg/FFmpeg.git
 	branch = release/7.1
     ignore = dirty
+[submodule "x264"]
+	path = x264
+	url = https://code.videolan.org/videolan/x264.git
+    ignore = dirty
