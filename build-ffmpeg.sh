@@ -2,6 +2,7 @@
 set -e
 git submodule update --init --recursive
 
+CPU_NUM=$(nproc --all)
 BASE_DIR=$(pwd)
 PREFIX_DIR=$BASE_DIR/target/
 echo $BASE_DIR
@@ -20,6 +21,7 @@ cd $BASE_DIR/ffmpeg/
     --disable-shared \
     --disable-postproc \
     --disable-avdevice \
+    --enable-pic \
     --enable-stripping \
     --enable-pthreads \
     --enable-avcodec \
@@ -40,5 +42,5 @@ cd $BASE_DIR/ffmpeg/
     --enable-filter=scale,format \
     --enable-protocol=file
 
-make
+make -j $CPU_NUM
 make install
