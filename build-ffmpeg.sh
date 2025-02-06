@@ -4,10 +4,10 @@ git submodule update --init --recursive
 
 CPU_NUM=$(nproc --all)
 BASE_DIR=$(pwd)
-PREFIX_DIR=$BASE_DIR/target/
+PREFIX_DIR=$BASE_DIR/target/ffmpeg
 echo $BASE_DIR
 
-cd $BASE_DIR/ffmpeg/
+cd $BASE_DIR/ffmpeg
 
 
 ./configure \
