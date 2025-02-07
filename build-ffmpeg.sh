@@ -1,19 +1,21 @@
 #!/bin/bash
 set -e
-git submodule update --init --recursive
 
-CPU_NUM=$(nproc --all)
 BASE_DIR=$(pwd)
-PREFIX_DIR=$BASE_DIR/target/ffmpeg
+REPO_DIR=$BASE_DIR/ffmpeg/
+PREFIX_DIR=$BASE_DIR/target
+INSTALL_DIR=$PREFIX_DIR/lib/$1
+
 echo $BASE_DIR
 
-cd $BASE_DIR/ffmpeg
+export PKG_CONFIG_PATH=$INSTALL_DIR/pkgconfig
 
+cd $REPO_DIR
 
 ./configure \
     --arch=$1 \
     --prefix=$PREFIX_DIR \
-    --libdir=$PREFIX_DIR/lib/$1 \
+    --libdir=$INSTALL_DIR \
     --disable-all \
     --disable-autodetect \
     --disable-debug \
@@ -30,17 +32,17 @@ cd $BASE_DIR/ffmpeg
     --enable-swscale \
     --enable-swresample \
     --enable-libx264 \
-    --enable-libx265 \
-    --enable-nvenc \
-    --enable-ffnvcodec \
     --enable-zlib \
     --enable-gpl \
-    --enable-encoder=h264_nvenc,libx264,hevc_nvenc,libx265 \
+    --enable-encoder=libx264 \
     --enable-decoder=mjpeg,jpeg2000,tiff \
-    --enable-muxer=h264,h265,mov,mp4 \
+    --enable-muxer=h264,mov,mp4 \
     --enable-demuxer=image2 \
     --enable-filter=scale,format \
-    --enable-protocol=file
+    --enable-protocol=file \
 
-make -j $CPU_NUM
+
+make -j $(nproc --all)
 make install
+
+cp $REPO_DIR/ffbuild/config.mak $PREFIX_DIR
