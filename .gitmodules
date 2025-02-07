@@ -15,3 +15,7 @@
 	path = zlib
 	url = https://github.com/madler/zlib.git
     ignore = dirty
+[submodule "nv-codec-headers"]
+	path = nv-codec-headers
+	url = https://github.com/FFmpeg/nv-codec-headers.git
+    ignore = dirty
