@@ -33,10 +33,12 @@ cd $REPO_DIR
     --enable-swresample \
     --enable-libx264 \
     --enable-zlib \
+    --enable-nvenc \
+    --enable-ffnvcodec \
     --enable-gpl \
-    --enable-encoder=libx264 \
+    --enable-encoder=libx264,h264_nvenc,hevc_nvenc \
     --enable-decoder=mjpeg,jpeg2000,tiff \
-    --enable-muxer=h264,mov,mp4 \
+    --enable-muxer=h264,h265,mov,mp4 \
     --enable-demuxer=image2 \
     --enable-filter=scale,format \
     --enable-protocol=file \
